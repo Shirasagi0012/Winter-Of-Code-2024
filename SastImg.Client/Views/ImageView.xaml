@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SastImg.Client.Views.ImageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SastImg.Client.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+    mc:Ignorable="d"
+    Background="Transparent">
+    <Grid>
+        <Button Width="48" Height="48" Margin="24" Canvas.ZIndex="3"
+                VerticalAlignment="Top" HorizontalAlignment="Left"
+                Click="Button_Click">
+            <AnimatedIcon x:Name="BackAnimatedIcon">
+                <AnimatedIcon.Source>
+                    <animatedvisuals:AnimatedBackVisualSource/>
+                </AnimatedIcon.Source>
+                <AnimatedIcon.FallbackIconSource>
+                    <SymbolIconSource Symbol="Back"/>
+                </AnimatedIcon.FallbackIconSource>
+            </AnimatedIcon>
+        </Button>
+
+        <ScrollViewer ZoomMode="Enabled" MinZoomFactor="1" x:Name="scroll"
+                        IsTabStop="True" IsVerticalScrollChainingEnabled="True"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto"
+                        xmlns:ctui="using:CommunityToolkit.WinUI"
+                        ctui:FrameworkElementExtensions.EnableActualSizeBinding="true">
+            <Image x:Name="img" Stretch="Uniform" Canvas.ZIndex="1"
+                           MaxWidth="{x:Bind scroll.(ctui:FrameworkElementExtensions.ActualWidth), Mode=OneWay}" 
+                           MaxHeight="{x:Bind scroll.(ctui:FrameworkElementExtensions.ActualHeight), Mode=OneWay}"
+                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </ScrollViewer>
+        
+    </Grid>
+</Page>
